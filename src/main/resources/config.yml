@@ -1,0 +1,90 @@
+# 관리자 명령어: /자동심기관리
+# 유저 명령어: /자동심기횟수확인
+
+# PlaceholderAPI가 서버에 있을 시 자동 심기 횟수가 연동됩니다.
+# └ %hqautoplant_count%
+
+# 자동 심기 횟수 추가권
+auto-plant-ticket:
+  material: BOOK
+  display-name: "&f자동 심기 횟수 추가권"
+  # %count% = 추가되는 횟수
+  lore:
+    - "&7우클릭 시 %count%회가 추가됩니다."
+  custom-model-data: 0
+
+# 자동 심기 횟수 무한 펄미션 (빈칸일 시 비활성화)
+# └ 오피는 항상 펄미션을 가지고 있으니 테스트 시 유의 바랍니다.
+infinity-permission: "hqautoplant.infinity"
+
+crop:
+  # 기본 마인크래프트 작물
+  minecraft:
+    enabled: true
+    # 작물과 씨앗 (Material)
+    seeds:
+      # 심기 횟수를 보유 중이고 밀(WHEAT)을 캤을 때 씨앗(WHEAT_SEEDS)을 소모합니다.
+      WHEAT: WHEAT_SEEDS
+      CARROTS: CARROT
+      POTATOES: POTATO
+      BEETROOTS: BEETROOT_SEEDS
+      PUMPKIN_STEM: PUMPKIN_SEEDS
+      ATTACHED_PUMPKIN_STEM: PUMPKIN_SEEDS
+      MELON_STEM: MELON_SEEDS
+      ATTACHED_MELON_STEM: MELON_SEEDS
+      COCOA: COCOA_BEANS
+    # 연결된 작물과 원본 작물
+    stem:
+      ATTACHED_PUMPKIN_STEM: PUMPKIN_STEM
+      ATTACHED_MELON_STEM: MELON_STEM
+
+  # 커스텀 크롭스 작물
+  custom-crops:
+    enabled: true
+    # 허용할 작물 (CustomCrops Key)
+    allowed:
+      - "tomato"
+      - "chinese_cabbage"
+
+notice:
+  # 자동 심기 횟수 추가권을 사용했을 때
+  use-auto-plant-ticket:
+    sound:
+      enabled: true
+      name: "minecraft:entity.player.levelup"
+      volume: 1
+      pitch: 2
+    chat:
+      enabled: true
+      message: "&c&l[ ! ] &f자동 심기 %count%회가 추가되었습니다."
+    title:
+      enabled: true
+      title: "&c&l[ ! ]"
+      subtitle: "&f자동 심기 %count%회가 추가되었습니다."
+      fade-in: 2
+      duration: 20
+      fade-out: 2
+
+  # 자동 심기 횟수를 모두 소진했을 때
+  auto-plant-count-all-used:
+    sound:
+      enabled: true
+      name: "minecraft:entity.experience_orb.pickup"
+      volume: 1
+      pitch: 1
+    chat:
+      enabled: true
+      message: "&c&l[ ! ] &f자동 심기 횟수가 모두 소진되었습니다."
+    title:
+      enabled: true
+      title: "&c&l[ ! ]"
+      subtitle: "&f자동 심기 횟수가 모두 소진되었습니다."
+      fade-in: 2
+      duration: 20
+      fade-out: 2
+
+  # 자동 심기 횟수 확인 명령어 입력 시
+  show-auto-plant-count:
+    chat:
+      enabled: true
+      message: "&f%player%님의 자동 심기 횟수: &a%count%회"

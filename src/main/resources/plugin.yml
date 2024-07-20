@@ -1,0 +1,13 @@
+name: HQAutoPlant
+main: kr.cosine.autoplant.HQAutoPlant
+version: 1.0.0
+api-version: 1.17
+author: Cosine_A
+depend:
+  - HQFramework
+softdepend:
+  - PlaceholderAPI
+  - CustomCrops
+
+commands:
+  자동심기횟수확인: {}
