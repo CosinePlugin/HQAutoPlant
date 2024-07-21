@@ -19,6 +19,7 @@ class MinecraftCropService(
     private val schedulerService: SchedulerService
 ) {
 
+    private val autoPlantDelay get() = settingRegistry.getAutoPlantDelay()
     private val minecraftCropSetting get() = settingRegistry.getMinecraftCropSetting()
 
     fun plant(player: Player, block: Block) {
@@ -44,7 +45,7 @@ class MinecraftCropService(
         }
         seedsItemStack.amount--
 
-        schedulerService.runTaskLater {
+        schedulerService.runTaskLater(autoPlantDelay) {
             val facing = if (blockData is Directional) blockData.facing else null
             block.type = minecraftCropSetting.findStem(blockMaterial) ?: blockMaterial
             val newBlockData = block.blockData

@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "kr.cosine.autoplant"
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
     maven("https://maven.hqservice.kr/repository/maven-public")
@@ -15,7 +15,6 @@ dependencies {
     compileOnly("org.spigotmc", "spigot-api", "1.17.1-R0.1-SNAPSHOT")
     compileOnly("me.clip", "placeholderapi", "2.11.6")
     compileOnly("com.github.Xiao-MoMi", "Custom-Crops", "3.4.8")
-    compileOnly("com.github.LoneDev6", "api-itemsadder", "3.6.1")
 
     compileOnly("kr.hqservice", "hqframework-bukkit-core", "1.0.1-SNAPSHOT") {
         exclude("org.spigotmc")

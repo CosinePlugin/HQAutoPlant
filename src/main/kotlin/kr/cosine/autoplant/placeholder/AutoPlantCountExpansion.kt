@@ -2,10 +2,12 @@ package kr.cosine.autoplant.placeholder
 
 import kr.cosine.autoplant.database.repository.AutoPlantRepository
 import kr.cosine.autoplant.extension.format
+import kr.hqservice.framework.bukkit.core.component.registry.PluginDepend
 import kr.hqservice.framework.global.core.component.Bean
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
 import org.bukkit.entity.Player
 
+@PluginDepend(["PlaceholderAPI"])
 @Bean
 class AutoPlantCountExpansion(
     private val autoPlantRepository: AutoPlantRepository

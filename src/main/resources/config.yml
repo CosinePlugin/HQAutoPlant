@@ -1,3 +1,5 @@
+config-version: "1"
+
 # 관리자 명령어: /자동심기관리
 # 유저 명령어: /자동심기횟수확인
 
@@ -16,6 +18,9 @@ auto-plant-ticket:
 # 자동 심기 횟수 무한 펄미션 (빈칸일 시 비활성화)
 # └ 오피는 항상 펄미션을 가지고 있으니 테스트 시 유의 바랍니다.
 infinity-permission: "hqautoplant.infinity"
+
+# 작물 자동 심기 딜레이 (틱 단위)
+auto-plant-delay: 1
 
 crop:
   # 기본 마인크래프트 작물

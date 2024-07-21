@@ -18,6 +18,7 @@ class SettingConfig(
     fun load() {
         loadAutoPlantTicket()
         loadInfinityPermission()
+        loadAutoPlantDelay()
         loadCrop()
         loadNotice()
     }
@@ -37,6 +38,11 @@ class SettingConfig(
     private fun loadInfinityPermission() {
         val infinityPermission = config.getString("infinity-permission").ifBlank { null } ?: return
         settingRegistry.setInfinityPermission(infinityPermission)
+    }
+
+    private fun loadAutoPlantDelay() {
+        val autoPlantDelay = config.getLong("auto-plant-delay", 1L)
+        settingRegistry.setAutoPlantDelay(autoPlantDelay)
     }
 
     private fun loadCrop() {
@@ -120,6 +126,7 @@ class SettingConfig(
     }
 
     fun reload() {
+        settingRegistry.clear()
         config.reload()
         load()
     }

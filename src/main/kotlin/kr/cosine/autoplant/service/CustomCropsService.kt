@@ -23,6 +23,7 @@ class CustomCropsService(
     private val worldManager get() = customCrops.worldManager
     private val itemManager get() = customCrops.itemManager
 
+    private val autoPlantDelay get() = settingRegistry.getAutoPlantDelay()
     private val customCropsSetting get() = settingRegistry.getCustomCropsSetting()
 
     fun plant(player: Player, worldCrop: WorldCrop) {
@@ -46,7 +47,7 @@ class CustomCropsService(
         }
         seedsItemStack.amount--
 
-        schedulerService.runTaskLater {
+        schedulerService.runTaskLater(autoPlantDelay) {
             val simpleLocation = worldCrop.location
             val location = simpleLocation.bukkitLocation
             val crop = worldCrop.config

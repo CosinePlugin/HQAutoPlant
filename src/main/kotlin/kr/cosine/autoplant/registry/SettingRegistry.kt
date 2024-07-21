@@ -13,6 +13,8 @@ class SettingRegistry {
 
     private var infinityPermission: String? = null
 
+    private var autoPlantDelay: Long? = null
+
     private var defaultMinecraftCropSetting = MinecraftCropSetting.initWithDefault()
     private var minecraftCropSetting: MinecraftCropSetting? = null
 
@@ -34,6 +36,14 @@ class SettingRegistry {
         this.infinityPermission = infinityPermission
     }
 
+    fun getAutoPlantDelay(): Long {
+        return autoPlantDelay ?: 1L
+    }
+
+    fun setAutoPlantDelay(autoPlantDelay: Long) {
+        this.autoPlantDelay = autoPlantDelay
+    }
+
     fun getMinecraftCropSetting(): MinecraftCropSetting {
         return minecraftCropSetting ?: defaultMinecraftCropSetting
     }
@@ -53,6 +63,7 @@ class SettingRegistry {
     fun clear() {
         autoPlantTicket = null
         infinityPermission = null
+        autoPlantDelay = null
         minecraftCropSetting = null
         customCropsSetting = null
     }
