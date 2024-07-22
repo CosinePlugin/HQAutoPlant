@@ -1,6 +1,5 @@
 package kr.cosine.autoplant.service
 
-import kr.cosine.autoplant.data.Value
 import kr.cosine.autoplant.database.repository.AutoPlantRepository
 import kr.cosine.autoplant.enums.Notice
 import kr.cosine.autoplant.extension.format
@@ -20,10 +19,10 @@ class AutoPlantTicketService(
     fun giveAutoPlantTicket(player: Player, count: Int): Boolean {
         val autoPlantTicket = settingRegistry.findAutoPlantTicket() ?: return false
         val itemStack = autoPlantTicket.toItemStack {
-            it.replace(Value.COUNT, count.format())
+            it.replace("%count%", count.format())
         }.nms {
             tag {
-                setInt(Value.AUTO_PLANT_COUNT_KEY, count)
+                setInt("HQAutoPlantCount", count)
             }
         }
         player.inventory.addItem(itemStack)
@@ -31,11 +30,11 @@ class AutoPlantTicketService(
     }
 
     fun useAutoPlantTicket(player: Player, itemStack: ItemStack): Boolean {
-        val count = itemStack.getNmsItemStack().getTagOrNull()?.getIntOrNull(Value.AUTO_PLANT_COUNT_KEY) ?: return false
+        val count = itemStack.getNmsItemStack().getTagOrNull()?.getIntOrNull("HQAutoPlantCount") ?: return false
         itemStack.amount--
-        autoPlantRepository[player.uniqueId] += count
+        autoPlantRepository[player.uniqueId].addCount(count)
         Notice.USE_AUTO_PLANT_TICKET.notice(player) {
-            it.replace(Value.COUNT, count.format())
+            it.replace("%count%", count.format())
         }
         return true
     }

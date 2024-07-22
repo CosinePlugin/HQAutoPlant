@@ -16,11 +16,16 @@ class SettingConfig(
 ) {
 
     fun load() {
+        loadRequiredUsePermission()
         loadAutoPlantTicket()
-        loadInfinityPermission()
         loadAutoPlantDelay()
         loadCrop()
         loadNotice()
+    }
+
+    private fun loadRequiredUsePermission() {
+        val isRequiredUsePermission = config.getBoolean("required-use-permission")
+        settingRegistry.setRequiredUsePermission(isRequiredUsePermission)
     }
 
     private fun loadAutoPlantTicket() {
@@ -33,11 +38,6 @@ class SettingConfig(
             val autoPlantTicket = LazyItemStack(material, displayName, lore, customModelData)
             settingRegistry.setAutoPlantTicket(autoPlantTicket)
         }
-    }
-
-    private fun loadInfinityPermission() {
-        val infinityPermission = config.getString("infinity-permission").ifBlank { null } ?: return
-        settingRegistry.setInfinityPermission(infinityPermission)
     }
 
     private fun loadAutoPlantDelay() {

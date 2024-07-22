@@ -13,8 +13,9 @@ enum class Notice(
 ) {
     USE_AUTO_PLANT_TICKET,
     AUTO_PLANT_COUNT_ALL_USED,
-    SHOW_AUTO_PLANT_COUNT;
-
+    SHOW_AUTO_PLANT_COUNT,
+    ENABLED_AUTO_PLANT,
+    DISABLED_AUTO_PLANT;
 
     fun setSound(sound: Sound?) {
         this.sound = sound

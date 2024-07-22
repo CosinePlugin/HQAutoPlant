@@ -21,7 +21,7 @@ class AutoPlantCountExpansion(
 
     override fun onPlaceholderRequest(player: Player, params: String): String? {
         return if (params == "count") {
-            autoPlantRepository[player.uniqueId].format()
+            autoPlantRepository[player.uniqueId].getCount().format()
         } else {
             null
         }

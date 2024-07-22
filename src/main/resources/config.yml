@@ -1,10 +1,15 @@
-config-version: "1"
-
 # 관리자 명령어: /자동심기관리
 # 유저 명령어: /자동심기횟수확인
 
 # PlaceholderAPI가 서버에 있을 시 자동 심기 횟수가 연동됩니다.
 # └ %hqautoplant_count%
+
+# 자동 심기 횟수 무한 펄미션 (오피는 항상 펄미션을 가지고 있으니 테스트 시 유의 바랍니다.)
+# └ hqautoplant.infinity
+
+# 자동 심기 펄미션 (아래 권한이 있어야만 자동 심기를 사용할 수 있는지에 대한 설정입니다.)
+# └ hqautoplant.use
+required-use-permission: false
 
 # 자동 심기 횟수 추가권
 auto-plant-ticket:
@@ -14,10 +19,6 @@ auto-plant-ticket:
   lore:
     - "&7우클릭 시 %count%회가 추가됩니다."
   custom-model-data: 0
-
-# 자동 심기 횟수 무한 펄미션 (빈칸일 시 비활성화)
-# └ 오피는 항상 펄미션을 가지고 있으니 테스트 시 유의 바랍니다.
-infinity-permission: "hqautoplant.infinity"
 
 # 작물 자동 심기 딜레이 (틱 단위)
 auto-plant-delay: 1
@@ -93,3 +94,39 @@ notice:
     chat:
       enabled: true
       message: "&f%player%님의 자동 심기 횟수: &a%count%회"
+
+  # 자동 심기 활성화 시
+  enabled-auto-plant:
+    sound:
+      enabled: true
+      name: "minecraft:ui.button.click"
+      volume: 1
+      pitch: 1
+    chat:
+      enabled: true
+      message: "&f자동 심기가 활성화되었습니다."
+    title:
+      enabled: true
+      title: "&c&l[ ! ]"
+      subtitle: "&f자동 심기가 활성화되었습니다."
+      fade-in: 2
+      duration: 20
+      fade-out: 2
+
+  # 자동 심기 비활성화 시
+  disabled-auto-plant:
+    sound:
+      enabled: true
+      name: "minecraft:ui.button.click"
+      volume: 1
+      pitch: 1
+    chat:
+      enabled: true
+      message: "&f자동 심기가 비활성화되었습니다."
+    title:
+      enabled: true
+      title: "&c&l[ ! ]"
+      subtitle: "&f자동 심기가 비활성화되었습니다."
+      fade-in: 2
+      duration: 20
+      fade-out: 2

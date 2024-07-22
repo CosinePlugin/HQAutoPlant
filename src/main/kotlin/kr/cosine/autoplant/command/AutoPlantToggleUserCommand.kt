@@ -9,13 +9,13 @@ import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
 @Bean
-class AutoPlantUserCommand(
+class AutoPlantToggleUserCommand(
     private val autoPlantManagementService: AutoPlantManagementService
 ) : CommandExecutor, TabCompleter {
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
         val player = sender as? Player ?: return true
-        autoPlantManagementService.showAutoPlantCount(player, player)
+        autoPlantManagementService.switchAutoPlantEnabled(player)
         return true
     }
 

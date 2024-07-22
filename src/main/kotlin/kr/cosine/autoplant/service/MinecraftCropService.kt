@@ -2,6 +2,7 @@ package kr.cosine.autoplant.service
 
 import kr.cosine.autoplant.database.repository.AutoPlantRepository
 import kr.cosine.autoplant.enums.Notice
+import kr.cosine.autoplant.enums.Permission
 import kr.cosine.autoplant.registry.SettingRegistry
 import kr.hqservice.framework.global.core.component.Service
 import org.bukkit.Material
@@ -26,9 +27,13 @@ class MinecraftCropService(
         if (!minecraftCropSetting.isEnabled) return
 
         val playerUniqueId = player.uniqueId
-        val autoPlantCount = autoPlantRepository[playerUniqueId]
-        val hasNotInfinityPermission = !settingRegistry.hasInfinityPermission(player)
-        if (hasNotInfinityPermission && autoPlantCount == 0) return
+        val autoPlantDTO = autoPlantRepository[playerUniqueId]
+        if (!autoPlantDTO.isEnabled()) return
+
+        if (settingRegistry.isRequiredUsePermission && !Permission.USE.hasPermission(player)) return
+
+        val hasNotInfinityPermission = !Permission.INFINITY.hasPermission(player)
+        if (hasNotInfinityPermission && autoPlantDTO.isCountEmpty()) return
 
         val blockMaterial = block.type
         val seedsMaterial = minecraftCropSetting.findSeeds(blockMaterial) ?: return
@@ -38,8 +43,8 @@ class MinecraftCropService(
         if (blockData is Ageable && blockData.age != blockData.maximumAge) return
 
         if (hasNotInfinityPermission) {
-            autoPlantRepository[playerUniqueId] -= 1
-            if (autoPlantRepository[playerUniqueId] == 0) {
+            autoPlantDTO.subtractCount()
+            if (autoPlantDTO.isCountEmpty()) {
                 Notice.AUTO_PLANT_COUNT_ALL_USED.notice(player)
             }
         }
