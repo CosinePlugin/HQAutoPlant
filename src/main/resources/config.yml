@@ -24,6 +24,9 @@ auto-plant-ticket:
 auto-plant-delay: 1
 
 crop:
+  # 다 안자라도 자동심기 되게 할건지
+  immature: false
+
   # 기본 마인크래프트 작물
   minecraft:
     enabled: true

@@ -47,6 +47,8 @@ class SettingConfig(
 
     private fun loadCrop() {
         config.getSection("crop")?.apply {
+            val isImmature = getBoolean("immature")
+            settingRegistry.setImmature(isImmature)
             getSection("minecraft")?.apply {
                 val isEnabled = getBoolean("enabled")
                 val seedsMap = getMaterialMap("seeds")

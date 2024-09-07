@@ -36,7 +36,7 @@ class CustomCropsService(
         if (!autoPlantDTO.isEnabled()) return
 
         if (settingRegistry.isRequiredUsePermission && !Permission.USE.hasPermission(player)) return
-        if (worldCrop.point != worldCrop.config.maxPoints) return
+        if (!settingRegistry.isImmature && worldCrop.point != worldCrop.config.maxPoints) return
 
         val hasNotInfinityPermission = !Permission.INFINITY.hasPermission(player)
         if (hasNotInfinityPermission && autoPlantDTO.isCountEmpty()) return

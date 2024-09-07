@@ -15,6 +15,9 @@ class SettingRegistry {
 
     private var autoPlantDelay: Long? = null
 
+    var isImmature = false
+        private set
+
     private var defaultMinecraftCropSetting = MinecraftCropSetting.initWithDefault()
     private var minecraftCropSetting: MinecraftCropSetting? = null
 
@@ -37,6 +40,10 @@ class SettingRegistry {
 
     fun setAutoPlantDelay(autoPlantDelay: Long) {
         this.autoPlantDelay = autoPlantDelay
+    }
+
+    fun setImmature(isImmature: Boolean) {
+        this.isImmature = isImmature
     }
 
     fun getMinecraftCropSetting(): MinecraftCropSetting {
