@@ -1,6 +1,6 @@
 name: HQAutoPlant
 main: kr.cosine.autoplant.HQAutoPlant
-version: 1.2.0
+version: 1.3.0
 api-version: 1.17
 author: Cosine_A
 depend:
